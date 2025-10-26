@@ -1,0 +1,36 @@
+/* ===== Общие стили для неона ===== */
+.neon-hover a,
+.neon-mobile a {
+  transition: color 0.3s ease, text-shadow 0.5s ease;
+}
+
+/* ===== ТЁМНАЯ ТЕМА ===== */
+[data-theme="dark"] .neon-hover a:hover,
+[data-theme="dark"] .neon-mobile a:hover {
+  color: #00eaff;
+  text-shadow: 0 0 4px #00eaff, 0 0 8px #00eaff, 0 0 16px #00eaff,
+    0 0 32px #00eaff;
+}
+
+/* ===== СВЕТЛАЯ ТЕМА ===== */
+[data-theme="light"] .neon-hover a:hover,
+[data-theme="light"] .neon-mobile a:hover {
+  color: #007b9e;
+  text-shadow: 0 0 2px #7de3ff, 0 0 4px #7de3ff, 0 0 6px #7de3ff;
+}
+
+/* ===== Плавное появление меню ===== */
+@keyframes neonFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.neon-mobile {
+  animation: neonFadeIn 0.3s ease;
+}
