@@ -7,6 +7,7 @@ import HomePage from "./routes/Home";
 import AboutPage from "./routes/About";
 import ContactPage from "./routes/Contact";
 import ProductsPage from "./routes/Products";
+import CartPage from "./routes/Cart";
 
 function App() {
   return (

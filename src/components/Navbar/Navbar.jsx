@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
 import { ThemeSwitcher } from "../ThemeSwitcher/ThemeSwitcher";
 import { useTheme } from "../../contexts/ThemeContext";
+import { CartIcon } from "../CartIcon";
 import lightLogo from "../../assets/website/logo-light.png";
 import darkLogo from "../../assets/website/logo-dark.png";
 import "./Navbar.css";
-import { CartIcon } from "../CartIcon";
 
 const linkStyles =
   "py-1 px-3 text-lg font-light transition duration-300 rounded-2xl";
@@ -36,7 +36,7 @@ export const Navbar = () => {
   return (
     <nav
       className={`${navBgClass} ${navShadowClass} fixed top-0 left-0 w-full z-50`}
-      data-theme={theme} // 👈 чтобы CSS мог определить текущую тему
+      data-theme={theme}
     >
       <div className="container mx-auto flex items-center justify-between py-3 px-4 md:px-8">
         {/* Логотип */}
@@ -63,11 +63,18 @@ export const Navbar = () => {
           <Link to="/products" className={`${linkStyles} ${navLinkColor}`}>
             Products
           </Link>
+
+          {/* CartIcon для desktop */}
+          <CartIcon />
+
           <ThemeSwitcher />
         </div>
 
         {/* ===== Mobile Burger ===== */}
         <div className="flex md:hidden items-center gap-3">
+          {/* CartIcon для mobile */}
+          <CartIcon />
+
           <ThemeSwitcher />
           <button
             className={`${burgerIconColor} text-3xl`}
@@ -83,7 +90,7 @@ export const Navbar = () => {
       <div
         className={`md:hidden ${
           isOpen ? "block" : "hidden"
-        } ${navMobileBg} shadow-xl neon-mobile`} // 👈 добавили класс neon-mobile
+        } ${navMobileBg} shadow-xl neon-mobile`}
       >
         <div className="flex flex-col w-full">
           <Link to="/" className={mobileLinkStyles} onClick={toggleMenu}>
@@ -101,6 +108,11 @@ export const Navbar = () => {
             onClick={toggleMenu}
           >
             Products
+          </Link>
+
+          {/* Cart для mobile меню */}
+          <Link to="/cart" className={mobileLinkStyles} onClick={toggleMenu}>
+            🛒 Корзина
           </Link>
         </div>
       </div>
