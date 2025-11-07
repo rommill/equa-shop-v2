@@ -8,12 +8,12 @@ import { CartProvider } from "./contexts/CartContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <CartProvider>
-        <BrowserRouter>
+    <BrowserRouter>
+      <ThemeProvider>
+        <CartProvider>
           <App />
-        </BrowserRouter>
-      </CartProvider>
-    </ThemeProvider>
+        </CartProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );

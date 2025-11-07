@@ -2,7 +2,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar/Navbar";
 
-// ИМПОРТИРУЙТЕ КОМПОНЕНТЫ СТРАНИЦ ИЗ ПАПКИ ROUTES
 import HomePage from "./routes/Home";
 import AboutPage from "./routes/About";
 import ContactPage from "./routes/Contact";
@@ -14,7 +13,6 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        {/* ИСПОЛЬЗУЙТЕ ИМПОРТИРОВАННЫЕ КОМПОНЕНТЫ */}
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
