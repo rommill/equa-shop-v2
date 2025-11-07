@@ -7,8 +7,15 @@
 
 @media (min-width: 640px) {
   .hero-flip-card {
-    width: 380px;
-    height: 380px;
+    width: 350px;
+    height: 350px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-flip-card {
+    width: 400px;
+    height: 400px;
   }
 }
 
@@ -37,16 +44,51 @@
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 1.5rem;
+  border-radius: 1rem;
 }
 
 .hero-flip-card-back {
   transform: rotateY(180deg);
+  overflow: hidden;
 }
 
-/* УВЕЛИЧИВАЕМ ЗАКРУГЛЕНИЕ ФОТОГРАФИЙ */
+/* Утилиты для обрезки текста */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Scrollbar для развернутого текста */
+.hero-flip-card-back::-webkit-scrollbar {
+  width: 4px;
+}
+
+.hero-flip-card-back::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.hero-flip-card-back::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.hero-flip-card-back::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Остальные стили остаются как были */
 .hero-image {
-  border-radius: 1.5rem !important;
+  border-radius: 1rem !important;
   transition: all 0.3s ease;
 }
 
@@ -54,7 +96,6 @@
   transform: scale(1.02);
 }
 
-/* Floating Animation */
 @keyframes float {
   0%,
   100% {
@@ -67,141 +108,17 @@
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+  z-index: 50 !important;
 }
 
-/* Smooth transitions */
-.hero-flip-card {
-  transition: all 0.3s ease;
-}
-
-.hero-flip-card:hover {
-  transform: translateY(-5px);
-}
-
-/* Glass morphism effects */
-.backdrop-blur-sm {
-  backdrop-filter: blur(8px);
-}
-
-/* Custom slick dots styling */
-.slick-dots {
-  position: absolute !important;
-  bottom: 20px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  display: flex !important;
-  justify-content: center !important;
-  gap: 12px !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.slick-dots li {
-  margin: 0 !important;
-  width: auto !important;
-  height: auto !important;
-}
-
-.slick-dots li button {
-  width: 10px !important;
-  height: 10px !important;
-  padding: 0 !important;
-  border-radius: 50% !important;
-  background: rgba(156, 163, 175, 0.5) !important;
-  transition: all 0.3s ease !important;
-  border: none !important;
-}
-
-.slick-dots li button:before {
-  display: none !important;
-}
-
-.slick-dots li.slick-active button {
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6) !important;
-  transform: scale(1.3) !important;
-}
-
-/* Dark theme dots */
-.dark .slick-dots li button {
-  background: rgba(75, 85, 99, 0.5) !important;
-}
-
-.dark .slick-dots li.slick-active button {
-  background: linear-gradient(135deg, #60a5fa, #a78bfa) !important;
-}
-
-/* Gradient text animation */
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradientShift 3s ease infinite;
-}
-
-/* Pulse animation for decorative elements */
-@keyframes gentlePulse {
-  0%,
-  100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-.animate-pulse {
-  animation: gentlePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Hover lift effect */
-.hover-lift {
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.hover-lift:hover {
-  transform: translateY(-8px);
-}
-
-/* Shine effect on buttons */
-.shine-effect {
-  position: relative;
-  overflow: hidden;
-}
-
-.shine-effect::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.4),
-    transparent
-  );
-  transition: left 0.5s;
-}
-
-.shine-effect:hover::before {
-  left: 100%;
+.price-tag {
+  z-index: 50 !important;
 }
 
 /* Mobile optimizations */
 @media (max-width: 640px) {
   .hero-flip-card {
-    margin-top: 1rem;
+    margin: 0 auto;
   }
 
   .slick-dots {
