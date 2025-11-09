@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
 import Hero from "../components/Hero/Hero";
+import BannerComponent from "../components/Banner/BannerComponent";
 
-const Home = () => {
+const Home = ({ bannerData }) => {
   const { theme } = useTheme();
 
   const bgClass =
@@ -25,6 +26,8 @@ const Home = () => {
     <div className={`min-h-screen ${bgClass} ${textColor}`}>
       {/* Hero Section with Carousel */}
       <Hero />
+
+      <BannerComponent data={bannerData} />
 
       {/* Features Section */}
       <section className="py-16 px-4">

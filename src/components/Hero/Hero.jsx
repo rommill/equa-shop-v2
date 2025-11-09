@@ -105,7 +105,7 @@ const Hero = () => {
     pauseOnHover: true,
     beforeChange: (current, next) => setCurrentSlide(next),
     accessibility: true,
-    adaptiveHeight: true, // ВАЖНО: верни обратно true
+    adaptiveHeight: true,
   };
 
   const heroBg =
@@ -131,7 +131,6 @@ const Hero = () => {
         />
       </div>
 
-      {/* УВЕЛИЧИВАЕМ ОТСТУП СВЕРХУ ДЛЯ ХЕДЕРА */}
       <div
         className={`pt-24 md:pt-28 lg:pt-32 ${heroBg} flex justify-center items-center relative z-10 py-8 min-h-screen`}
       >
@@ -246,7 +245,6 @@ const Hero = () => {
                     </div>
                   </div>
 
-                  {/* 3D Flip Card - ДОБАВЛЯЕМ ОТСТУП СВЕРХУ */}
                   <div className="order-1 lg:order-2 flex justify-center relative mt-8 lg:mt-0">
                     <div
                       data-aos="zoom-in"
@@ -274,7 +272,6 @@ const Hero = () => {
                               className={`absolute -bottom-3 -left-3 w-4 h-4 bg-gradient-to-r ${data.accentColor} rounded-full opacity-80`}
                             />
 
-                            {/* Price Tag - ОПУСКАЕМ НИЖЕ */}
                             <div
                               className={`price-tag absolute top-4 right-4 sm:top-6 sm:right-6 px-3 py-1 sm:px-4 sm:py-2 bg-gradient-to-r ${data.accentColor} text-white text-sm font-bold rounded-full shadow-lg transform rotate-12 animate-float z-50`}
                             >
@@ -309,7 +306,7 @@ const Hero = () => {
                                 {data.fullDescription}
                               </div>
 
-                              {/* Кнопка Read More/Less */}
+                              {/*  Read More/Less */}
                               <button
                                 onClick={(e) => {
                                   e.preventDefault();

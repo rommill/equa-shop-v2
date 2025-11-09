@@ -1,6 +1,7 @@
 // src/App.jsx
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar/Navbar";
+import { BannerData } from "./data/BannerData";
 
 import HomePage from "./routes/Home";
 import AboutPage from "./routes/About";
@@ -13,7 +14,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage bannerData={BannerData} />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/products" element={<ProductsPage />} />
