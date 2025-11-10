@@ -7,6 +7,7 @@ import "aos/dist/aos.css";
 import { useTheme } from "../../contexts/ThemeContext";
 import { Link } from "react-router-dom";
 import "./Hero.css";
+import { BannerData } from "../../data/BannerData";
 
 import Image1 from "./Image1.png";
 import Image2 from "./Image2.png";
@@ -76,6 +77,7 @@ const Hero = () => {
   const { theme } = useTheme();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [expandedDescriptions, setExpandedDescriptions] = useState({});
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     AOS.init({
@@ -84,6 +86,7 @@ const Hero = () => {
       once: true,
       mirror: false,
     });
+    setIsLoaded(true);
   }, []);
 
   const toggleDescription = (id) => {
@@ -206,7 +209,7 @@ const Hero = () => {
                     >
                       <Link
                         to="/products"
-                        className={`group relative px-8 py-4 text-lg font-semibold text-white rounded-xl bg-gradient-to-r ${data.accentColor} transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden text-center`}
+                        className={`group relative px-8 py-4 text-lg font-semibold text-white rounded-xl bg-gradient-to-r ${data.accentColor} transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden text-center hover:-translate-y-1`} // Добавляем подъем
                       >
                         <span className="relative z-10">Buy it now</span>
                         <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
@@ -324,10 +327,10 @@ const Hero = () => {
                                 {data.features.map((feature, idx) => (
                                   <div
                                     key={idx}
-                                    className="flex items-center text-xs sm:text-sm"
+                                    className="flex items-center text-xs sm:text-sm group hover:translate-x-1 transition-transform duration-300" // Добавляем сдвиг
                                   >
-                                    <div className="w-2 h-2 bg-white rounded-full mr-2 flex-shrink-0" />
-                                    <span className="opacity-90">
+                                    <div className="w-2 h-2 bg-white rounded-full mr-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-300" />
+                                    <span className="opacity-90 group-hover:opacity-100 transition-opacity">
                                       {feature}
                                     </span>
                                   </div>
