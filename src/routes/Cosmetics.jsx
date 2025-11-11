@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useTheme } from "../contexts/ThemeContext";
+import { useTheme } from "../contexts/ThemeContext"; // 👈 Добавляем импорт
 import CosmeticsHero from "../components/CosmeticsHero/CosmeticsHero";
 import ProductGrid from "../components/ProductGrid/ProductGrid";
 import { cosmeticsData } from "../data/cosmeticsData";
@@ -9,9 +8,11 @@ import "aos/dist/aos.css";
 import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
 
 const Cosmetics = () => {
-  const { theme } = useTheme();
+  const { theme } = useTheme(); // 👈 Используем глобальную тему
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     AOS.init({
       duration: 1000,
       easing: "ease-out-cubic",
@@ -26,65 +27,8 @@ const Cosmetics = () => {
       : "bg-gradient-to-br from-purple-900 to-pink-900";
 
   const textColor = theme === "light" ? "text-gray-800" : "text-white";
-  const buttonPrimary = "bg-pink-500 hover:bg-pink-600 text-white";
-
   return (
-    <div className={`min-h-screen ${bgClass} ${textColor}`}>
-      {/* Хедер с навигацией */}
-      <header className="border-b border-white/10">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <Link
-              to="/"
-              className="group flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 text-pink-600 hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
-              data-aos="fade-right"
-              data-aos-delay="100"
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                />
-              </svg>
-              Back to Main
-            </Link>
-            <nav className="flex gap-6">
-              <a
-                href="#skincare"
-                className="hover:text-pink-500 transition-colors"
-                data-aos="fade-down"
-                data-aos-delay="200"
-              >
-                Skincare
-              </a>
-              <a
-                href="#makeup"
-                className="hover:text-pink-500 transition-colors"
-                data-aos="fade-down"
-                data-aos-delay="300"
-              >
-                Makeup
-              </a>
-              <a
-                href="#about"
-                className="hover:text-pink-500 transition-colors"
-                data-aos="fade-down"
-                data-aos-delay="400"
-              >
-                About
-              </a>
-            </nav>
-          </div>
-        </div>
-      </header>
-
+    <div className={`min-h-screen pt-20 ${bgClass} ${textColor}`}>
       {/* Герой-секция с логотипом */}
       <CosmeticsHero brand={cosmeticsData.brand} />
 
@@ -131,13 +75,13 @@ const Cosmetics = () => {
               data-aos="fade-up"
               data-aos-delay="600"
             >
-              <Link
-                to="/products"
+              <a
+                href="/products"
                 className="group relative px-8 py-4 text-lg font-semibold text-white rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden text-center inline-block"
               >
                 <span className="relative z-10">Shop All Products</span>
                 <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              </Link>
+              </a>
 
               <button className="group relative px-8 py-4 text-lg font-semibold border-2 border-pink-500 text-pink-500 dark:text-pink-400 rounded-xl transition-all duration-300 transform hover:scale-105 hover:bg-pink-500 hover:text-white overflow-hidden">
                 <span className="relative z-10">Get Consultation</span>
@@ -202,6 +146,7 @@ const Cosmetics = () => {
           </p>
         </div>
       </footer>
+
       <ScrollToTop />
     </div>
   );

@@ -1,6 +1,20 @@
+// src/components/ProductGrid/ProductGrid.jsx - ПОЛНЫЙ КОД
 import React from "react";
+import { useCosmeticsCart } from "../../contexts/CosmeticsCartContext";
 
 const ProductGrid = ({ products }) => {
+  const { addToCart, getCartItemsCount } = useCosmeticsCart();
+
+  const handleAddToCart = (product, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("Adding to cart:", product);
+
+    addToCart(product); // 👈 Без второго параметра, если твой контекст так работает
+
+    console.log("Cart items count after add:", totalItems);
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {products.map((product, index) => (
@@ -26,13 +40,6 @@ const ProductGrid = ({ products }) => {
                 </span>
               </div>
             )}
-
-            {/* Overlay при наведении */}
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-              <button className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white text-pink-600 px-4 py-2 rounded-lg font-semibold">
-                Quick View
-              </button>
-            </div>
           </div>
 
           {/* Контент продукта */}
@@ -60,7 +67,10 @@ const ProductGrid = ({ products }) => {
 
           <div className="flex justify-between items-center">
             <p className="text-2xl font-bold text-pink-600">{product.price}</p>
-            <button className="group relative px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 overflow-hidden">
+            <button
+              onClick={(e) => handleAddToCart(product, e)}
+              className="group relative px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 overflow-hidden"
+            >
               <span className="relative z-10">Add to Cart</span>
               <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
             </button>

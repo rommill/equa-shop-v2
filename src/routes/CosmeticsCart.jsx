@@ -1,42 +1,40 @@
-// src/routes/Cart.jsx - АДАПТИРУЕМ ПОД ТВОЙ КОНТЕКСТ
+// src/routes/CosmeticsCart.jsx - ПОЛНАЯ СТРАНИЦА КОРЗИНЫ КОСМЕТИКИ
 import React from "react";
 import { Link } from "react-router-dom";
-import { useCart } from "../contexts/CartContext";
-import { useTheme } from "../contexts/ThemeContext";
+import { useCosmeticsCart } from "../contexts/CosmeticsCartContext";
 
-const Cart = () => {
+const CosmeticsCart = () => {
   const {
-    cartItems,
-    totalItems,
-    totalPrice,
+    items,
     removeFromCart,
     updateQuantity,
     clearCart,
-  } = useCart();
-  const { theme } = useTheme();
+    getCartTotal,
+    getCartItemsCount,
+  } = useCosmeticsCart();
 
-  console.log("🛒 Cart items:", cartItems); // Для отладки
+  console.log("💄 Cosmetics Cart items:", items);
 
-  if (!cartItems || cartItems.length === 0) {
+  if (!items || items.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800 pt-20">
+      <div className="min-h-screen bg-gradient-to-br from-pink-50 to-rose-50 dark:from-purple-900 dark:to-pink-900 pt-20">
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-2xl mx-auto text-center">
             <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-3xl p-12 shadow-2xl border border-white/20">
-              <div className="w-24 h-24 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-4xl">🛒</span>
+              <div className="w-24 h-24 bg-pink-100 dark:bg-pink-900 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-4xl">💄</span>
               </div>
               <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
-                Your Cart is Empty
+                Your Beauty Cart is Empty
               </h1>
               <p className="text-gray-600 dark:text-gray-300 mb-8">
-                Discover our amazing products and add them to your cart
+                Discover our premium skincare and makeup collection
               </p>
               <Link
-                to="/products"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-blue-500 text-white font-semibold rounded-xl hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
+                to="/cosmetics"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-pink-500 text-white font-semibold rounded-xl hover:bg-pink-600 transition-all duration-300 transform hover:scale-105"
               >
-                <span>Start Shopping</span>
+                <span>Explore Beauty Products</span>
                 <span>→</span>
               </Link>
             </div>
@@ -47,7 +45,7 @@ const Cart = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-rose-50 dark:from-purple-900 dark:to-pink-900 pt-20">
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Левая часть - товары */}
@@ -55,8 +53,8 @@ const Cart = () => {
             <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white/20">
               <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-                  Shopping Cart ({totalItems}{" "}
-                  {totalItems === 1 ? "item" : "items"})
+                  Beauty Cart ({getCartItemsCount()}{" "}
+                  {getCartItemsCount() === 1 ? "item" : "items"})
                 </h1>
                 <button
                   onClick={clearCart}
@@ -67,7 +65,7 @@ const Cart = () => {
               </div>
 
               <div className="space-y-4">
-                {cartItems.map((item) => (
+                {items.map((item) => (
                   <div
                     key={item.id}
                     className="flex items-center gap-4 p-4 bg-white dark:bg-slate-700 rounded-2xl border border-gray-100 dark:border-slate-600"
@@ -83,18 +81,14 @@ const Cart = () => {
 
                     {/* Информация о товаре */}
                     <div className="flex-grow">
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <h3 className="font-semibold text-gray-800 dark:text-white mb-1">
-                            {item.name}
-                          </h3>
-                          <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                            {item.category}
-                          </p>
-                          <div className="text-blue-500 font-bold text-lg">
-                            {item.price}
-                          </div>
-                        </div>
+                      <h3 className="font-semibold text-gray-800 dark:text-white mb-1">
+                        {item.name}
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                        {item.category}
+                      </p>
+                      <div className="text-pink-500 font-bold text-lg">
+                        {item.price}
                       </div>
                     </div>
 
@@ -162,7 +156,7 @@ const Cart = () => {
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between text-gray-600 dark:text-gray-300">
                   <span>Subtotal</span>
-                  <span>${totalPrice?.toFixed(2) || "0.00"}</span>
+                  <span>${getCartTotal().toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-gray-600 dark:text-gray-300">
                   <span>Shipping</span>
@@ -170,23 +164,23 @@ const Cart = () => {
                 </div>
                 <div className="flex justify-between text-gray-600 dark:text-gray-300">
                   <span>Tax</span>
-                  <span>${((totalPrice || 0) * 0.1).toFixed(2)}</span>
+                  <span>${(getCartTotal() * 0.1).toFixed(2)}</span>
                 </div>
                 <div className="border-t border-gray-200 dark:border-slate-600 pt-3">
                   <div className="flex justify-between text-lg font-bold text-gray-800 dark:text-white">
                     <span>Total</span>
-                    <span>${((totalPrice || 0) * 1.1).toFixed(2)}</span>
+                    <span>${(getCartTotal() * 1.1).toFixed(2)}</span>
                   </div>
                 </div>
               </div>
 
-              <button className="w-full bg-blue-500 text-white py-4 rounded-xl font-semibold hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 mb-4">
+              <button className="w-full bg-pink-500 text-white py-4 rounded-xl font-semibold hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 mb-4">
                 Proceed to Checkout
               </button>
 
               <Link
-                to="/products"
-                className="w-full text-center block border-2 border-blue-500 text-blue-500 py-3 rounded-xl font-semibold hover:bg-blue-500 hover:text-white transition-all duration-300"
+                to="/cosmetics"
+                className="w-full text-center block border-2 border-pink-500 text-pink-500 py-3 rounded-xl font-semibold hover:bg-pink-500 hover:text-white transition-all duration-300"
               >
                 Continue Shopping
               </Link>
@@ -198,4 +192,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CosmeticsCart;

@@ -1,6 +1,7 @@
-// src/contexts/CartContext.jsx
+// src/contexts/CosmeticsCartContext.jsx - ОБНОВИМ С LOCALSTORAGE
 import React, { createContext, useContext, useReducer, useEffect } from "react";
 
+// Типы действий
 const ACTION_TYPES = {
   ADD_TO_CART: "ADD_TO_CART",
   REMOVE_FROM_CART: "REMOVE_FROM_CART",
@@ -9,29 +10,26 @@ const ACTION_TYPES = {
   LOAD_CART: "LOAD_CART",
 };
 
-// Функция для загрузки корзины из localStorage
-const loadCartFromStorage = () => {
+// Функции для работы с localStorage
+const loadCosmeticsCartFromStorage = () => {
   try {
-    const savedCart = localStorage.getItem("equa-shop-cart");
+    const savedCart = localStorage.getItem("equa-cosmetics-cart");
     return savedCart ? JSON.parse(savedCart) : { items: [] };
   } catch (error) {
-    console.error("Error loading cart from localStorage:", error);
+    console.error("Error loading cosmetics cart:", error);
     return { items: [] };
   }
 };
 
-// Функция для сохранения корзины в localStorage
-const saveCartToStorage = (cart) => {
+const saveCosmeticsCartToStorage = (cart) => {
   try {
-    localStorage.setItem("equa-shop-cart", JSON.stringify(cart));
+    localStorage.setItem("equa-cosmetics-cart", JSON.stringify(cart));
   } catch (error) {
-    console.error("Error saving cart to localStorage:", error);
+    console.error("Error saving cosmetics cart:", error);
   }
 };
 
 const cartReducer = (state, action) => {
-  console.log("Cart Reducer - Action:", action); // 👈 Добавь эту строку
-  console.log("Cart Reducer - Current State:", state); // 👈 И эту
   let newState;
 
   switch (action.type) {
@@ -43,15 +41,13 @@ const cartReducer = (state, action) => {
 
     case ACTION_TYPES.ADD_TO_CART:
       const existingItem = state.items.find(
-        (item) =>
-          item.id === action.payload.id && item.type === action.payload.type
+        (item) => item.id === action.payload.id
       );
-
       if (existingItem) {
         newState = {
           ...state,
           items: state.items.map((item) =>
-            item.id === action.payload.id && item.type === action.payload.type
+            item.id === action.payload.id
               ? { ...item, quantity: item.quantity + 1 }
               : item
           ),
@@ -67,12 +63,7 @@ const cartReducer = (state, action) => {
     case ACTION_TYPES.REMOVE_FROM_CART:
       newState = {
         ...state,
-        items: state.items.filter(
-          (item) =>
-            !(
-              item.id === action.payload.id && item.type === action.payload.type
-            )
-        ),
+        items: state.items.filter((item) => item.id !== action.payload),
       };
       break;
 
@@ -80,7 +71,7 @@ const cartReducer = (state, action) => {
       newState = {
         ...state,
         items: state.items.map((item) =>
-          item.id === action.payload.id && item.type === action.payload.type
+          item.id === action.payload.id
             ? { ...item, quantity: action.payload.quantity }
             : item
         ),
@@ -100,50 +91,45 @@ const cartReducer = (state, action) => {
 
   // Сохраняем в localStorage после каждого изменения
   if (newState) {
-    saveCartToStorage(newState);
+    saveCosmeticsCartToStorage(newState);
   }
 
   return newState || state;
 };
 
-const CartContext = createContext();
+// Создаем контекст
+const CosmeticsCartContext = createContext();
 
-export const CartProvider = ({ children }) => {
+// Провайдер
+export const CosmeticsCartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, {
     items: [],
   });
 
-  // Загружаем корзину из localStorage при монтировании
+  // Загружаем корзину при загрузке
   useEffect(() => {
-    const savedCart = loadCartFromStorage();
+    const savedCart = loadCosmeticsCartFromStorage();
     dispatch({ type: ACTION_TYPES.LOAD_CART, payload: savedCart });
   }, []);
 
-  const addToCart = (product, type = "medical") => {
-    dispatch({
-      type: ACTION_TYPES.ADD_TO_CART,
-      payload: { ...product, type },
-    });
+  const addToCart = (product) => {
+    dispatch({ type: ACTION_TYPES.ADD_TO_CART, payload: product });
   };
 
-  const removeFromCart = (productId, type) => {
-    dispatch({
-      type: ACTION_TYPES.REMOVE_FROM_CART,
-      payload: { id: productId, type },
-    });
+  const removeFromCart = (productId) => {
+    dispatch({ type: ACTION_TYPES.REMOVE_FROM_CART, payload: productId });
   };
 
-  const updateQuantity = (productId, type, quantity) => {
+  const updateQuantity = (productId, quantity) => {
     dispatch({
       type: ACTION_TYPES.UPDATE_QUANTITY,
-      payload: { id: productId, type, quantity },
+      payload: { id: productId, quantity },
     });
   };
 
   const clearCart = () => {
     dispatch({ type: ACTION_TYPES.CLEAR_CART });
-    // Также очищаем localStorage
-    localStorage.removeItem("equa-shop-cart");
+    localStorage.removeItem("equa-cosmetics-cart");
   };
 
   const getCartTotal = () => {
@@ -157,10 +143,6 @@ export const CartProvider = ({ children }) => {
     return state.items.reduce((total, item) => total + item.quantity, 0);
   };
 
-  const getItemsByType = (type) => {
-    return state.items.filter((item) => item.type === type);
-  };
-
   const value = {
     items: state.items,
     addToCart,
@@ -169,16 +151,22 @@ export const CartProvider = ({ children }) => {
     clearCart,
     getCartTotal,
     getCartItemsCount,
-    getItemsByType,
   };
 
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+  return (
+    <CosmeticsCartContext.Provider value={value}>
+      {children}
+    </CosmeticsCartContext.Provider>
+  );
 };
 
-export const useCart = () => {
-  const context = useContext(CartContext);
+// Хук для использования контекста
+export const useCosmeticsCart = () => {
+  const context = useContext(CosmeticsCartContext);
   if (!context) {
-    throw new Error("useCart must be used within a CartProvider");
+    throw new Error(
+      "useCosmeticsCart must be used within a CosmeticsCartProvider"
+    );
   }
   return context;
 };
