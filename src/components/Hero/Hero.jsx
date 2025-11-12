@@ -103,12 +103,14 @@ const Hero = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 8000, // 👈 увеличиваем до 8 секунд
     cssEase: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
     pauseOnHover: true,
     beforeChange: (current, next) => setCurrentSlide(next),
     accessibility: true,
-    adaptiveHeight: true,
+    adaptiveHeight: false, // 👈 меняем на false
+    focusOnSelect: false, // 👈 добавляем
+    waitForAnimate: true, // 👈 добавляем
   };
 
   const heroBg =

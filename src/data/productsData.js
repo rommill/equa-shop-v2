@@ -5,8 +5,7 @@ export const medicalProducts = [
     name: "Professional Stethoscope",
     category: "Diagnostic Equipment",
     price: "$79.99",
-    image:
-      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=300&h=300&fit=crop",
+    image: "/images/medical/geri-voodi-300x300.jpg",
     features: ["Dual Head", "Noise Reduction", "Lifetime Warranty"],
     badge: "BEST SELLER",
   },
@@ -15,8 +14,7 @@ export const medicalProducts = [
     name: "Digital Blood Pressure Monitor",
     category: "Home Monitoring",
     price: "$89.99",
-    image:
-      "https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?w=300&h=300&fit=crop",
+    image: "/images/medical/Peafoto__beautychair_equa_1941_3-300x300.jpg",
     features: [
       "Automatic Inflation",
       "Irregular Heartbeat Detection",
@@ -29,8 +27,7 @@ export const medicalProducts = [
     name: "First Aid Kit Deluxe",
     category: "Emergency Care",
     price: "$49.99",
-    image:
-      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=300&h=300&fit=crop",
+    image: "/images/medical/Equa_1918_labivaatuslaud-300x300.jpg",
     features: ["150+ Pieces", "Waterproof Case", "5-Year Shelf Life"],
     badge: "ESSENTIAL",
   },
@@ -39,8 +36,7 @@ export const medicalProducts = [
     name: "Portable Oxygen Concentrator",
     category: "Respiratory Care",
     price: "$1,299.99",
-    image:
-      "https://images.unsplash.com/photo-1585435557343-3b092031d4ad?w=300&h=300&fit=crop",
+    image: "/images/medical/Equa-1703-plastist-voodikapp-300x300.jpg",
     features: ["Lightweight Design", "Long Battery Life", "Travel Approved"],
     badge: "PREMIUM",
   },
@@ -50,7 +46,7 @@ export const medicalProducts = [
     category: "Diagnostic Tools",
     price: "$24.99",
     image:
-      "https://images.unsplash.com/photo-1585435557343-3b092031d4ad?w=300&h=300&fit=crop",
+      "/images/medical/Equa-1914-labivaatuslaud-statsionaarne-esipilt-1024x1024-1-300x300.jpg",
     features: ["Fast Reading", "Memory Function", "Fever Alert"],
     badge: "FAST",
   },
@@ -59,8 +55,7 @@ export const medicalProducts = [
     name: "Medical Examination Kit",
     category: "Professional Tools",
     price: "$199.99",
-    image:
-      "https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?w=300&h=300&fit=crop",
+    image: "/images/medical/Equa-1917-labivaatuslaud-x-raamil-300x300.jpg",
     features: ["Complete Set", "Hospital Grade", "Durable Case"],
   },
 ];
@@ -68,21 +63,32 @@ export const medicalProducts = [
 export const featuredProducts = [
   {
     id: 101,
+    name: "EQUA Sadultool",
+    category: "Töötoolid",
+    price: "$590.24",
+    image: "/images/medical/Equa-1950-300x300.jpg",
+    features: [
+      "Madal amort 47-59 cm",
+      "Keskmine amort 54 -73 cm",
+      "Kõrge amort 65- 91 cm",
+    ],
+    badge: "LIMITED",
+  },
+  {
+    id: 7,
     name: "Home Care Bundle",
     category: "Wellness Kit",
     price: "$199.99",
-    image:
-      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=300&h=300&fit=crop",
+    image: "/images/medical/arvutilaud-Equa-7004-300x300.jpg",
     features: ["5 Essential Items", "Family Size", "24/7 Support"],
     badge: "LIMITED",
   },
   {
-    id: 102,
+    id: 8,
     name: "Emergency Response Set",
     category: "Safety",
     price: "$149.99",
-    image:
-      "https://images.unsplash.com/photo-1585435557343-3b092031d4ad?w=300&h=300&fit=crop",
+    image: "/images/medical/Equa-1800-reguleeritav-voodilaud-300x300.jpg",
     features: ["Rapid Deployment", "Comprehensive Tools", "Durable Case"],
     badge: "HOT",
   },

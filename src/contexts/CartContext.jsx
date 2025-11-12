@@ -30,8 +30,8 @@ const saveCartToStorage = (cart) => {
 };
 
 const cartReducer = (state, action) => {
-  console.log("Cart Reducer - Action:", action); // 👈 Добавь эту строку
-  console.log("Cart Reducer - Current State:", state); // 👈 И эту
+  // console.log("Cart Reducer - Action:", action); // 👈 Добавь эту строку
+  // console.log("Cart Reducer - Current State:", state); // 👈 И эту
   let newState;
 
   switch (action.type) {

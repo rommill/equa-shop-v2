@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
 import { useTheme } from "../contexts/ThemeContext";
+import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
 
 const Cart = () => {
   const {
@@ -28,6 +29,7 @@ const Cart = () => {
             <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-3xl p-12 shadow-2xl border border-white/20">
               <div className="w-24 h-24 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-4xl">🛒</span>
+                <ScrollToTop />
               </div>
               <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
                 Your Cart is Empty

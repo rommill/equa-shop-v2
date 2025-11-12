@@ -1,3 +1,4 @@
+// src/components/Navbar/Navbar.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
@@ -64,17 +65,22 @@ export const Navbar = () => {
             Products
           </Link>
 
-          {/* CartIcon для desktop */}
-          <CartIcon />
+          {/* Ссылка на косметику с иконкой 💄 */}
+          <Link
+            to="/cosmetics"
+            className={`${linkStyles} ${navLinkColor} flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white hover:from-pink-600 hover:to-purple-600`}
+          >
+            <span>💄</span>
+            <span>Beauty</span>
+          </Link>
 
+          <CartIcon />
           <ThemeSwitcher />
         </div>
 
         {/* ===== Mobile Burger ===== */}
         <div className="flex md:hidden items-center gap-3">
-          {/* CartIcon для mobile */}
           <CartIcon />
-
           <ThemeSwitcher />
           <button
             className={`${burgerIconColor} text-3xl`}
@@ -110,9 +116,17 @@ export const Navbar = () => {
             Products
           </Link>
 
-          {/* Cart для mobile меню */}
+          {/* Ссылка на косметику в мобильном меню */}
+          <Link
+            to="/cosmetics"
+            className={`${mobileLinkStyles} bg-gradient-to-r from-pink-500 to-purple-500 text-white`}
+            onClick={toggleMenu}
+          >
+            💄 Beauty Line
+          </Link>
+
           <Link to="/cart" className={mobileLinkStyles} onClick={toggleMenu}>
-            🛒 Корзина
+            🛒 Cart
           </Link>
         </div>
       </div>

@@ -7,6 +7,7 @@ import Hero from "../components/Hero/Hero";
 import BannerComponent from "../components/Banner/BannerComponent";
 import ProductGrid from "../components/ProductGrid/ProductGrid";
 import { medicalProducts, featuredProducts } from "../data/productsData";
+import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
 
 const Home = ({ bannerData }) => {
   const { theme } = useTheme();
@@ -43,6 +44,7 @@ const Home = ({ bannerData }) => {
               High-quality medical equipment and supplies for professionals and
               home use
             </p>
+            <ScrollToTop />
           </div>
 
           <ProductGrid
@@ -178,19 +180,24 @@ const Home = ({ bannerData }) => {
         <div className="container mx-auto max-w-4xl text-center">
           <div className="bg-white dark:bg-slate-800 rounded-2xl p-12 shadow-2xl border border-white/20">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Start Shopping?
+              Visit Our Official Store
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-              Join thousands of satisfied customers who have already discovered
-              the world of Equa Shop
+              Discover the complete Equa product collection with real purchasing
+              options
             </p>
-            <Link
-              to="/products"
-              className="group relative px-12 py-4 text-lg font-semibold text-white rounded-xl bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden inline-block"
-            >
-              <span className="relative z-10">View All Products</span>
-              <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-            </Link>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://pood.equa.ee/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative px-8 py-4 text-lg font-semibold text-white rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden"
+              >
+                <span className="relative z-10">Official Store ↗</span>
+                <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
