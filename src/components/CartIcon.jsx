@@ -1,17 +1,15 @@
 // src/components/CartIcon.jsx
-
 import React from "react";
 import { useCart } from "../contexts/CartContext";
 import { useTheme } from "../contexts/ThemeContext";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
-/**
- * Иконка корзины с динамическим счетчиком товаров.
- */
-export const CartIcon = () => {
-  const { totalItems } = useCart();
+const CartIcon = () => {
+  const { getCartItemsCount } = useCart(); // 👈 Используем эту функцию
   const { theme } = useTheme();
+
+  const totalItems = getCartItemsCount(); // 👈 Получаем количество товаров
 
   const iconColor = theme === "light" ? "text-gray-800" : "text-white";
   const counterBg = theme === "light" ? "bg-sky-500" : "bg-pink-500";
@@ -36,3 +34,5 @@ export const CartIcon = () => {
     </Link>
   );
 };
+
+export default CartIcon; // 👈 Экспортируем как default

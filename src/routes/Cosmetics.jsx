@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { useTheme } from "../contexts/ThemeContext"; // 👈 Добавляем импорт
+import { useTheme } from "../contexts/ThemeContext";
+import { useCosmeticsCart } from "../contexts/CosmeticsCartContext"; // 👈 Возвращаем косметический контекст
 import CosmeticsHero from "../components/CosmeticsHero/CosmeticsHero";
 import ProductGrid from "../components/ProductGrid/ProductGrid";
 import { cosmeticsData } from "../data/cosmeticsData";
@@ -8,11 +9,11 @@ import "aos/dist/aos.css";
 import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
 
 const Cosmetics = () => {
-  const { theme } = useTheme(); // 👈 Используем глобальную тему
+  const { theme } = useTheme();
+  const { addToCart } = useCosmeticsCart(); // 👈 Используем косметическую корзину
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
     AOS.init({
       duration: 1000,
       easing: "ease-out-cubic",
@@ -20,6 +21,10 @@ const Cosmetics = () => {
       mirror: false,
     });
   }, []);
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+  };
 
   const bgClass =
     theme === "light"
@@ -42,7 +47,11 @@ const Cosmetics = () => {
           >
             Our Products
           </h2>
-          <ProductGrid products={cosmeticsData.products} />
+          <ProductGrid
+            products={cosmeticsData.products}
+            onAddToCart={handleAddToCart}
+            buttonColor="from-pink-500 to-purple-500"
+          />
         </div>
       </section>
 

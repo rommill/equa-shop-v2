@@ -1,18 +1,16 @@
-// src/components/ProductGrid/ProductGrid.jsx - ПОЛНЫЙ КОД
+// src/components/ProductGrid/ProductGrid.jsx
 import React from "react";
-import { useCosmeticsCart } from "../../contexts/CosmeticsCartContext";
 
-const ProductGrid = ({ products }) => {
-  const { addToCart, getCartItemsCount } = useCosmeticsCart();
-
+const ProductGrid = ({
+  products,
+  onAddToCart,
+  buttonColor = "from-blue-500 to-indigo-500",
+}) => {
   const handleAddToCart = (product, e) => {
     e.preventDefault();
     e.stopPropagation();
     console.log("Adding to cart:", product);
-
-    addToCart(product); // 👈 Без второго параметра, если твой контекст так работает
-
-    console.log("Cart items count after add:", totalItems);
+    onAddToCart(product);
   };
 
   return (
@@ -66,13 +64,15 @@ const ProductGrid = ({ products }) => {
           </div>
 
           <div className="flex justify-between items-center">
-            <p className="text-2xl font-bold text-pink-600">{product.price}</p>
+            <p className="text-2xl font-bold text-pink-600 dark:text-pink-400">
+              {product.price}
+            </p>
             <button
               onClick={(e) => handleAddToCart(product, e)}
-              className="group relative px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 overflow-hidden"
+              className={`group relative px-6 py-3 text-white font-semibold rounded-xl bg-gradient-to-r ${buttonColor} transition-all duration-300 transform hover:scale-105 hover:shadow-xl overflow-hidden`}
             >
               <span className="relative z-10">Add to Cart</span>
-              <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
+              <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             </button>
           </div>
         </div>

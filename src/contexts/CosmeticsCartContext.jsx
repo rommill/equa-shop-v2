@@ -1,4 +1,4 @@
-// src/contexts/CosmeticsCartContext.jsx - ОБНОВИМ С LOCALSTORAGE
+// src/contexts/CosmeticsCartContext.jsx
 import React, { createContext, useContext, useReducer, useEffect } from "react";
 
 // Типы действий
@@ -10,13 +10,12 @@ const ACTION_TYPES = {
   LOAD_CART: "LOAD_CART",
 };
 
-// Функции для работы с localStorage
+// localStorage функции
 const loadCosmeticsCartFromStorage = () => {
   try {
     const savedCart = localStorage.getItem("equa-cosmetics-cart");
     return savedCart ? JSON.parse(savedCart) : { items: [] };
   } catch (error) {
-    console.error("Error loading cosmetics cart:", error);
     return { items: [] };
   }
 };
@@ -89,7 +88,6 @@ const cartReducer = (state, action) => {
       return state;
   }
 
-  // Сохраняем в localStorage после каждого изменения
   if (newState) {
     saveCosmeticsCartToStorage(newState);
   }
@@ -97,16 +95,13 @@ const cartReducer = (state, action) => {
   return newState || state;
 };
 
-// Создаем контекст
 const CosmeticsCartContext = createContext();
 
-// Провайдер
 export const CosmeticsCartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, {
     items: [],
   });
 
-  // Загружаем корзину при загрузке
   useEffect(() => {
     const savedCart = loadCosmeticsCartFromStorage();
     dispatch({ type: ACTION_TYPES.LOAD_CART, payload: savedCart });

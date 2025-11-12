@@ -1,34 +1,106 @@
+// src/routes/Home.jsx
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
+import { useCart } from "../contexts/CartContext";
 import Hero from "../components/Hero/Hero";
 import BannerComponent from "../components/Banner/BannerComponent";
+import ProductGrid from "../components/ProductGrid/ProductGrid";
+import { medicalProducts, featuredProducts } from "../data/productsData";
 
 const Home = ({ bannerData }) => {
   const { theme } = useTheme();
+  const { addToCart } = useCart();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
+  const handleAddToCart = (product) => {
+    addToCart(product, "medical");
+  };
+
   const bgClass =
     theme === "light"
       ? "bg-gradient-to-br from-blue-50 to-indigo-100"
       : "bg-gradient-to-br from-slate-900 to-slate-800";
   const textColor = theme === "light" ? "text-gray-800" : "text-white";
-  const cardBg = theme === "light" ? "bg-white" : "bg-slate-800";
-  const buttonPrimary =
-    theme === "light"
-      ? "bg-blue-600 hover:bg-blue-700"
-      : "bg-blue-500 hover:bg-blue-600";
 
   return (
     <div className={`min-h-screen ${bgClass} ${textColor}`}>
-      {/* 1. Hero Section - остаётся первым */}
+      {/* 1. Hero Section */}
       <Hero />
 
-      {/* 2. Блок косметики - теперь ВТОРЫМ (перед баннером) */}
+      {/* 2. Featured Medical Products */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">
+              Featured Medical Products
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              High-quality medical equipment and supplies for professionals and
+              home use
+            </p>
+          </div>
+
+          <ProductGrid
+            products={medicalProducts}
+            onAddToCart={handleAddToCart}
+            buttonColor="from-blue-500 to-indigo-500"
+          />
+
+          <div className="text-center mt-12">
+            <Link
+              to="/products"
+              className="group relative px-8 py-4 text-lg font-semibold text-white rounded-xl bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden text-center inline-block"
+            >
+              <span className="relative z-10">View All Products</span>
+              <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Special Offers Banner */}
+      <section className="py-12 px-4">
+        <div className="container mx-auto max-w-4xl">
+          <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl p-8 text-white shadow-2xl text-center">
+            <h3 className="text-2xl font-bold mb-4">Special Medical Bundles</h3>
+            <p className="mb-6 text-lg">
+              Save up to 30% on our professional medical kits
+            </p>
+            <Link
+              to="/products"
+              className="group relative px-6 py-3 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg overflow-hidden inline-block border-2 border-white"
+            >
+              <span className="relative z-10">View Special Offers</span>
+              <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Featured Bundles */}
+      <section className="py-16 px-4 bg-white/50 dark:bg-slate-900/50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Professional Bundles</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Complete solutions for medical professionals and clinics
+            </p>
+          </div>
+
+          <ProductGrid
+            products={featuredProducts}
+            onAddToCart={handleAddToCart}
+            buttonColor="from-blue-500 to-indigo-500"
+          />
+        </div>
+      </section>
+
+      {/* 5. Beauty Section */}
       <section className="py-12 px-4">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="bg-gradient-to-r from-pink-500 to-purple-500 rounded-2xl p-8 text-white shadow-2xl">
@@ -38,31 +110,26 @@ const Home = ({ bannerData }) => {
             </p>
             <Link
               to="/cosmetics"
-              className="inline-block px-6 py-3 bg-white text-pink-600 font-semibold rounded-lg hover:scale-105 transition-transform hover:shadow-lg"
+              className="group relative px-6 py-3 bg-white text-pink-600 font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg overflow-hidden inline-block"
             >
-              Explore Beauty Products
+              <span className="relative z-10">Explore Beauty Products</span>
+              <div className="absolute inset-0 bg-pink-500/10 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 3. Banner Section - теперь ТРЕТЬИМ */}
+      {/* 6. Banner Section */}
       <BannerComponent data={bannerData} />
 
-      {/* 4. Features Section - остальные секции без изменений */}
+      {/* 7. Features Section */}
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
-          <div
-            className={`text-center mb-12 transition-all duration-700 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            <h2 className="text-4xl font-bold mb-4">Почему выбирают нас?</h2>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Why Choose Us?</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Мы заботимся о качестве каждого товара и удовлетворенности наших
-              клиентов
+              We care about the quality of every product and our customers'
+              satisfaction
             </p>
           </div>
 
@@ -70,33 +137,26 @@ const Home = ({ bannerData }) => {
             {[
               {
                 icon: "🚚",
-                title: "Быстрая доставка",
-                text: "Доставляем заказы по всему городу в течение 24 часов",
+                title: "Fast Delivery",
+                text: "We deliver orders citywide within 24 hours",
                 color: "bg-blue-500",
               },
               {
                 icon: "⭐",
-                title: "Гарантия качества",
-                text: "Все товары проходят строгий контроль качества перед отправкой",
+                title: "Quality Guarantee",
+                text: "All products undergo strict quality control before shipping",
                 color: "bg-green-500",
               },
               {
                 icon: "💬",
-                title: "Поддержка 24/7",
-                text: "Наша команда поддержки всегда готова помочь с любыми вопросами",
+                title: "24/7 Support",
+                text: "Our support team is always ready to help with any questions",
                 color: "bg-purple-500",
               },
             ].map((feature, index) => (
               <div
                 key={index}
-                className={`${cardBg} p-8 rounded-2xl shadow-lg border border-white/10 text-center transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl ${
-                  isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-10"
-                }`}
-                style={{
-                  transitionDelay: `${index * 200}ms`,
-                }}
+                className="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg border border-white/10 text-center transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl"
               >
                 <div
                   className={`w-16 h-16 ${feature.color} rounded-full flex items-center justify-center mx-auto mb-4 transition-transform duration-300 hover:scale-110`}
@@ -113,59 +173,52 @@ const Home = ({ bannerData }) => {
         </div>
       </section>
 
-      {/* 5. CTA Section */}
+      {/* 8. CTA Section */}
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-4xl text-center">
-          <div
-            className={`${cardBg} rounded-2xl p-12 shadow-2xl border border-white/20 transition-all duration-700 transform ${
-              isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
-            }`}
-          >
+          <div className="bg-white dark:bg-slate-800 rounded-2xl p-12 shadow-2xl border border-white/20">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Готовы начать покупки?
+              Ready to Start Shopping?
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-              Присоединяйтесь к тысячам довольных клиентов, которые уже открыли
-              для себя мир Equa Shop
+              Join thousands of satisfied customers who have already discovered
+              the world of Equa Shop
             </p>
             <Link
               to="/products"
-              className={`inline-block px-12 py-4 rounded-lg font-semibold text-white transition duration-300 transform hover:scale-105 hover:shadow-lg ${buttonPrimary}`}
+              className="group relative px-12 py-4 text-lg font-semibold text-white rounded-xl bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden inline-block"
             >
-              Перейти к товарам
+              <span className="relative z-10">View All Products</span>
+              <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 6. Footer */}
-      <footer
-        className={`py-8 px-4 border-t ${
-          theme === "light" ? "border-gray-200" : "border-slate-700"
-        }`}
-      >
+      {/* 9. Footer */}
+      <footer className="py-8 px-4 border-t border-gray-200 dark:border-slate-700">
         <div className="container mx-auto max-w-6xl text-center">
           <p className="text-gray-600 dark:text-gray-400">
-            © 2024 Equa Shop. Все права защищены.
+            © 2024 Equa Shop. All rights reserved.
           </p>
           <div className="flex justify-center space-x-6 mt-4">
             <Link
               to="/about"
               className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition duration-300"
             >
-              О нас
+              About
             </Link>
             <Link
               to="/contact"
               className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition duration-300"
             >
-              Контакты
+              Contact
             </Link>
             <Link
               to="/products"
               className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition duration-300"
             >
-              Товары
+              Products
             </Link>
           </div>
         </div>

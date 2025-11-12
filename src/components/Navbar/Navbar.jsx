@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
 import { ThemeSwitcher } from "../ThemeSwitcher/ThemeSwitcher";
 import { useTheme } from "../../contexts/ThemeContext";
-import { CartIcon } from "../CartIcon";
+import CartIcon from "../CartIcon";
 import lightLogo from "../../assets/website/logo-light.png";
 import darkLogo from "../../assets/website/logo-dark.png";
 import "./Navbar.css";
