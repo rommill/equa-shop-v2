@@ -26,25 +26,19 @@ const CosmeticsHeader = () => {
           </Link>
 
           {/* Навигация - скрываем на мобильных */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-            <Link
-              to="/cosmetics"
-              className="text-gray-600 dark:text-gray-300 hover:text-pink-500 transition-colors text-sm lg:text-base"
+          <nav className="flex items-center gap-6 lg:gap-8">
+            <a
+              href="#products" // 👈 меняем на якорную ссылку
+              className="text-gray-600 dark:text-gray-300 hover:text-pink-500 transition-colors text-sm lg:text-base px-3 py-1 rounded-lg bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("products")?.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }}
             >
               Products
-            </Link>
-            <Link
-              to="/cosmetics#about"
-              className="text-gray-600 dark:text-gray-300 hover:text-pink-500 transition-colors text-sm lg:text-base"
-            >
-              About
-            </Link>
-            <Link
-              to="/contact"
-              className="text-gray-600 dark:text-gray-300 hover:text-pink-500 transition-colors text-sm lg:text-base"
-            >
-              Contact
-            </Link>
+            </a>
           </nav>
 
           {/* Правая часть - компактная на мобильных */}

@@ -8,6 +8,7 @@ import BannerComponent from "../components/Banner/BannerComponent";
 import ProductGrid from "../components/ProductGrid/ProductGrid";
 import { medicalProducts, featuredProducts } from "../data/productsData";
 import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
+import Footer from "../components/Footer/Footer";
 
 const Home = ({ bannerData }) => {
   const { theme } = useTheme();
@@ -202,34 +203,7 @@ const Home = ({ bannerData }) => {
         </div>
       </section>
 
-      {/* 9. Footer */}
-      <footer className="py-8 px-4 border-t border-gray-200 dark:border-slate-700">
-        <div className="container mx-auto max-w-6xl text-center">
-          <p className="text-gray-600 dark:text-gray-400">
-            © 2024 Equa Shop. All rights reserved.
-          </p>
-          <div className="flex justify-center space-x-6 mt-4">
-            <Link
-              to="/about"
-              className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition duration-300"
-            >
-              About
-            </Link>
-            <Link
-              to="/contact"
-              className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition duration-300"
-            >
-              Contact
-            </Link>
-            <Link
-              to="/products"
-              className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition duration-300"
-            >
-              Products
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

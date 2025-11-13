@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
 import { useTheme } from "../contexts/ThemeContext";
 import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
+import Footer from "../components/Footer/Footer";
 
 const Cart = () => {
   const {
@@ -38,7 +39,7 @@ const Cart = () => {
                 Discover our amazing products and add them to your cart
               </p>
               <Link
-                to="/products"
+                to="/"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-blue-500 text-white font-semibold rounded-xl hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
               >
                 <span>Start Shopping</span>
@@ -69,6 +70,12 @@ const Cart = () => {
                 >
                   Clear All
                 </button>
+                <Link
+                  to="/"
+                  className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 font-medium transition-colors px-3 py-1 rounded-lg bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors"
+                >
+                  x Close
+                </Link>
               </div>
 
               <div className="space-y-4">
@@ -206,6 +213,8 @@ const Cart = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };

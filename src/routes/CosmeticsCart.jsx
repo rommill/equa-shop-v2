@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useCosmeticsCart } from "../contexts/CosmeticsCartContext";
+import Footer from "../components/Footer/Footer";
 
 const CosmeticsCart = () => {
   const {
@@ -12,8 +13,6 @@ const CosmeticsCart = () => {
     getCartTotal,
     getCartItemsCount,
   } = useCosmeticsCart();
-
-  console.log("💄 Cosmetics cart items:", cartItems);
 
   const totalItems = getCartItemsCount();
   const totalPrice = getCartTotal();
@@ -65,6 +64,12 @@ const CosmeticsCart = () => {
                 >
                   Clear All
                 </button>
+                <Link
+                  to="/cosmetics" // или window.history.back()
+                  className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 font-medium transition-colors px-3 py-1 rounded-lg bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors"
+                >
+                  x Close
+                </Link>
               </div>
 
               <div className="space-y-4">
@@ -197,6 +202,8 @@ const CosmeticsCart = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };

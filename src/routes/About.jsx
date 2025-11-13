@@ -2,50 +2,172 @@ import React from "react";
 
 const About = () => {
   return (
-    // Добавляем вертикальный padding, чтобы контент не прилипал к краям
-    <div className="min-h-screen bg-slate-50 w-full flex items-center justify-center py-20">
-      <div className="flex flex-col items-start max-w-3xl gap-6 p-6 rounded-xl bg-white shadow-xl">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-800 text-left">
-          About Equa Shop
-        </h1>
-        <p className="text-lg text-slate-700 leading-relaxed mt-2">
-          Welcome to **Equa Shop**, a project designed to showcase modern web
-          development techniques using **React**, **Tailwind CSS**, and **React
-          Router**. This application demonstrates seamless client-side
-          navigation, responsive design across all devices, and an effective
-          state management system for the shopping cart.
-        </p>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800 py-20 px-4">
+      <div className="container mx-auto max-w-4xl">
+        <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-2xl border border-white/20">
+          {/* Заголовок */}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">
+              🏪 Equa Shop
+            </h1>
+            <p className="text-xl text-gray-600 dark:text-gray-300">
+              Modern E-commerce Demonstration Platform
+            </p>
+          </div>
 
-        <h2 className="text-3xl font-semibold text-slate-700 mt-4">
-          Our Mission
-        </h2>
-        <p className="text-slate-600">
-          Our goal is to build highly efficient and user-friendly digital
-          experiences. By leveraging the power of modern JavaScript frameworks
-          and utility-first CSS, we ensure that every interaction is fast,
-          fluid, and intuitive. This environment serves as a foundational
-          template for creating scalable e-commerce frontends.
-        </p>
+          {/* Основной контент с разметкой */}
+          <div className="prose prose-lg dark:prose-invert max-w-none">
+            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+              <strong>Equa Shop</strong> is a cutting-edge e-commerce
+              demonstration platform built with modern web technologies,
+              showcasing the capabilities of React ecosystem for online retail.
+              This project represents the next generation of digital shopping
+              experiences, specifically designed for medical equipment and
+              beauty products retailers.
+            </p>
 
-        <div className="w-full h-1 bg-indigo-500 rounded-full my-4 opacity-50"></div>
+            {/* Технические особенности */}
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
+                🚀 Technical Excellence
+              </h2>
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                <strong>Equa Shop</strong> demonstrates technical excellence
+                through:
+              </p>
+              <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2 ml-4">
+                <li>
+                  <strong>React 18</strong> with functional components and hooks
+                  for modern development
+                </li>
+                <li>
+                  <strong>Tailwind CSS</strong> for utility-first responsive
+                  design and rapid prototyping
+                </li>
+                <li>
+                  <strong>React Router v6</strong> for seamless single-page
+                  application navigation
+                </li>
+                <li>
+                  <strong>Context API + useReducer</strong> for centralized
+                  state management
+                </li>
+                <li>
+                  <strong>Vite</strong> for lightning-fast development builds
+                  and optimal performance
+                </li>
+                <li>
+                  <strong>LocalStorage Integration</strong> for persistent cart
+                  data across sessions
+                </li>
+                <li>
+                  <strong>Component-Based Architecture</strong> for maximum
+                  reusability and maintainability
+                </li>
+              </ul>
+            </div>
 
-        <h3 className="text-xl font-medium text-slate-600">
-          Key Technologies Used:
-        </h3>
-        <ul className="list-disc list-inside text-slate-600 ml-4">
-          <li>**React.js:** For building the user interface.</li>
-          <li>
-            **Tailwind CSS:** For rapid, responsive, and utility-first styling.
-          </li>
-          <li>
-            **React Router:** For declarative navigation and smooth page
-            transitions.
-          </li>
-          <li>
-            **Context API:** For simple global state management (e.g., the
-            shopping cart).
-          </li>
-        </ul>
+            {/* E-commerce Features */}
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
+                🛍️ E-commerce Features
+              </h2>
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our platform delivers comprehensive e-commerce functionality:
+              </p>
+              <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2 ml-4">
+                <li>
+                  <strong>Dual Marketplace System</strong> - Independent
+                  shopping carts for Medical Equipment and Beauty Products
+                </li>
+                <li>
+                  <strong>Real-time Cart Management</strong> - Instant updates,
+                  quantity controls, and persistent storage
+                </li>
+                <li>
+                  <strong>Responsive Product Grids</strong> - Optimized layouts
+                  with hover effects and smooth animations
+                </li>
+                <li>
+                  <strong>Advanced Product Filtering</strong> - Category-based
+                  organization and search capabilities
+                </li>
+                <li>
+                  <strong>Theme Switching</strong> - Light/Dark mode with user
+                  preference persistence
+                </li>
+                <li>
+                  <strong>Mobile-First Design</strong> - Flawless shopping
+                  experience across all devices
+                </li>
+                <li>
+                  <strong>Professional UI/UX</strong> - Intuitive navigation and
+                  conversion-optimized flows
+                </li>
+              </ul>
+            </div>
+
+            {/* Business Value */}
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
+                💼 Business Value Proposition
+              </h2>
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                <strong>Equa Shop</strong> delivers tangible business benefits:
+              </p>
+              <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2 ml-4">
+                <li>
+                  <strong>Brand Consistency</strong> - Cohesive design language
+                  across product categories
+                </li>
+                <li>
+                  <strong>Conversion Optimization</strong> - User-centric design
+                  driving higher engagement and sales
+                </li>
+                <li>
+                  <strong>Scalable Architecture</strong> - Foundation for
+                  unlimited product expansion
+                </li>
+                <li>
+                  <strong>Global Readiness</strong> - Multi-language and
+                  currency support ready
+                </li>
+                <li>
+                  <strong>SEO Optimized</strong> - Search engine friendly
+                  structure and performance
+                </li>
+              </ul>
+            </div>
+
+            {/* Tech Stack */}
+            <div>
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
+                🛠️ Technology Stack
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700 dark:text-gray-300">
+                <div>
+                  <strong>Frontend Framework:</strong> React 18 with Hooks
+                </div>
+                <div>
+                  <strong>Routing:</strong> React Router v6
+                </div>
+                <div>
+                  <strong>Styling:</strong> Tailwind CSS + Custom CSS-in-JS
+                </div>
+                <div>
+                  <strong>State Management:</strong> React Context API +
+                  useReducer
+                </div>
+                <div>
+                  <strong>Build Tool:</strong> Vite
+                </div>
+                <div>
+                  <strong>Deployment:</strong> Vercel/Hosting Platform
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

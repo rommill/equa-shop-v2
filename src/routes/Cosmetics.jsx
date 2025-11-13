@@ -7,6 +7,7 @@ import { cosmeticsData } from "../data/cosmeticsData";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
+import Footer from "../components/Footer/Footer";
 
 const Cosmetics = () => {
   const { theme } = useTheme();
@@ -38,19 +39,14 @@ const Cosmetics = () => {
       <CosmeticsHero brand={cosmeticsData.brand} />
 
       {/* Сетка товаров */}
-      <section className="py-16 px-4">
+      <section id="products" className="py-16 px-4">
+        {" "}
+        {/* 👈 должен быть id="products" */}
         <div className="container mx-auto max-w-6xl">
-          <h2
-            className="text-3xl font-bold mb-8 text-center"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            Our Products
-          </h2>
+          <h2 className="text-3xl font-bold mb-8 text-center">Our Products</h2>
           <ProductGrid
             products={cosmeticsData.products}
             onAddToCart={handleAddToCart}
-            buttonColor="from-pink-500 to-purple-500"
           />
         </div>
       </section>
@@ -84,18 +80,31 @@ const Cosmetics = () => {
               data-aos="fade-up"
               data-aos-delay="600"
             >
+              {/* КНОПКА 1: Градиентная (Эффект БЕЛОЙ полосы) */}
               <a
-                href="/products"
+                href="https://pood.equa.ee/kategooria/fusioteraapia/massaaziolid-ja-kreemid/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group relative px-8 py-4 text-lg font-semibold text-white rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden text-center inline-block"
               >
                 <span className="relative z-10">Shop All Products</span>
+                {/* Белая полоса, вызывающая эффект заливки */}
                 <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               </a>
 
-              <button className="group relative px-8 py-4 text-lg font-semibold border-2 border-pink-500 text-pink-500 dark:text-pink-400 rounded-xl transition-all duration-300 transform hover:scale-105 hover:bg-pink-500 hover:text-white overflow-hidden">
+              {/* КНОПКА 2: Контурная (Эффект БЕЛОЙ полосы + смена цвета текста) */}
+              <a
+                href="https://pood.equa.ee/kontakt/"
+                target="_blank"
+                rel="noopener noreferrer"
+                // Здесь мы сохраняем контур и меняем цвет фона/текста при наведении
+                className="group relative px-8 py-4 text-lg font-semibold border-2 border-pink-500 text-pink-500 dark:text-pink-400 rounded-xl 
+               transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:bg-pink-500 hover:text-white overflow-hidden text-center inline-block"
+              >
                 <span className="relative z-10">Get Consultation</span>
-                <div className="absolute inset-0 bg-pink-500 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              </button>
+                {/* Теперь здесь тоже БЕЛАЯ полоса, которая создает одинаковый эффект заливки */}
+                <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              </a>
             </div>
           </div>
         </div>
@@ -147,14 +156,7 @@ const Cosmetics = () => {
         </div>
       </section>
 
-      {/* Футер */}
-      <footer className="py-8 px-4 border-t border-white/10">
-        <div className="container mx-auto max-w-6xl text-center">
-          <p className="text-gray-600 dark:text-gray-400">
-            © 2024 EQUA Beauty. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer />
 
       <ScrollToTop />
     </div>
