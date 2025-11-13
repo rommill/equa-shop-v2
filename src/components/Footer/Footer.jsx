@@ -2,6 +2,58 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../contexts/ThemeContext";
+import { useState, useEffect } from "react";
+
+function ViewCounter() {
+  const [views, setViews] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const updateViews = async () => {
+      // Для разработки - используем mock данные
+      if (import.meta.env.DEV) {
+        // Генерируем случайное число для разработки
+        const mockViews = Math.floor(Math.random() * 1000) + 100;
+        setViews(mockViews);
+        setLoading(false);
+        return;
+      }
+
+      // Для продакшена - реальный API вызов
+      try {
+        const response = await fetch("/api/counter");
+        const data = await response.json();
+
+        if (data.success) {
+          setViews(data.views);
+        }
+      } catch (error) {
+        console.error("Failed to fetch views:", error);
+        // Fallback - тоже показываем mock данные при ошибке
+        setViews(1234);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    updateViews();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+        <span className="animate-pulse">...</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+      <span className="text-blue-500">👤</span>
+      <span>{views?.toLocaleString()} visitors</span>
+    </div>
+  );
+}
 
 const Footer = () => {
   const { theme } = useTheme();
@@ -179,6 +231,7 @@ const Footer = () => {
           <p className="text-gray-600 dark:text-gray-400 text-sm">
             © 2025 EQUA Shop. All rights reserved.
           </p>
+          <ViewCounter />
 
           <div className="mt-2">
             <span className="text-gray-600 dark:text-gray-400 text-sm">
