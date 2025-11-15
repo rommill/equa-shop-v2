@@ -1,7 +1,7 @@
-import { kv } from "@vercel/kv";
+// api/counter.js - ПРОСТАЯ РАБОЧАЯ ВЕРСИЯ
+let views = 0;
 
 export default async function handler(request, response) {
-  // Разрешаем CORS
   response.setHeader("Access-Control-Allow-Origin", "*");
   response.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
 
@@ -10,7 +10,8 @@ export default async function handler(request, response) {
   }
 
   try {
-    const views = await kv.incr("site_views");
+    views += 1;
+    console.log("Current views:", views);
 
     response.status(200).json({
       success: true,
@@ -20,7 +21,7 @@ export default async function handler(request, response) {
     console.error("Counter error:", error);
     response.status(500).json({
       success: false,
-      error: "Failed to update counter",
+      error: error.message,
     });
   }
 }
