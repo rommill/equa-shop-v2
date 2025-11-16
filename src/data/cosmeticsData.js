@@ -2,7 +2,7 @@
 export const cosmeticsData = {
   brand: {
     name: "EQUA Beauty",
-    logo: "../../public/images/women.png", // Укажи правильный путь к твоему логотипу
+    logo: "/images/women.png",
     slogan: "Natural Beauty, Real Results",
     description:
       "Premium skincare and cosmetics inspired by nature, powered by science",
