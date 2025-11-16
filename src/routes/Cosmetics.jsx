@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useTheme } from "../contexts/ThemeContext";
-import { useCosmeticsCart } from "../contexts/CosmeticsCartContext"; // 👈 Возвращаем косметический контекст
+import { useCosmeticsCart } from "../contexts/CosmeticsCartContext";
 import CosmeticsHero from "../components/CosmeticsHero/CosmeticsHero";
 import ProductGrid from "../components/ProductGrid/ProductGrid";
 import { cosmeticsData } from "../data/cosmeticsData";
@@ -11,7 +11,7 @@ import Footer from "../components/Footer/Footer";
 
 const Cosmetics = () => {
   const { theme } = useTheme();
-  const { addToCart } = useCosmeticsCart(); // 👈 Используем косметическую корзину
+  const { addToCart } = useCosmeticsCart();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,13 +35,10 @@ const Cosmetics = () => {
   const textColor = theme === "light" ? "text-gray-800" : "text-white";
   return (
     <div className={`min-h-screen pt-20 ${bgClass} ${textColor}`}>
-      {/* Герой-секция с логотипом */}
       <CosmeticsHero brand={cosmeticsData.brand} />
 
-      {/* Сетка товаров */}
       <section id="products" className="py-16 px-4">
         {" "}
-        {/* 👈 должен быть id="products" */}
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl font-bold mb-8 text-center">Our Products</h2>
           <ProductGrid
@@ -51,7 +48,6 @@ const Cosmetics = () => {
         </div>
       </section>
 
-      {/* CTA Section с крутыми кнопками */}
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-4xl text-center">
           <div
@@ -74,13 +70,11 @@ const Cosmetics = () => {
               Discover your perfect beauty routine with our premium collection
             </p>
 
-            {/* Кнопки в стиле Hero */}
             <div
               className="flex flex-col sm:flex-row gap-4 justify-center"
               data-aos="fade-up"
               data-aos-delay="600"
             >
-              {/* КНОПКА 1: Градиентная (Эффект БЕЛОЙ полосы) */}
               <a
                 href="https://pood.equa.ee/kategooria/fusioteraapia/massaaziolid-ja-kreemid/"
                 target="_blank"
@@ -88,21 +82,19 @@ const Cosmetics = () => {
                 className="group relative px-8 py-4 text-lg font-semibold text-white rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden text-center inline-block"
               >
                 <span className="relative z-10">Shop All Products</span>
-                {/* Белая полоса, вызывающая эффект заливки */}
+
                 <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               </a>
 
-              {/* КНОПКА 2: Контурная (Эффект БЕЛОЙ полосы + смена цвета текста) */}
               <a
                 href="https://pood.equa.ee/kontakt/"
                 target="_blank"
                 rel="noopener noreferrer"
-                // Здесь мы сохраняем контур и меняем цвет фона/текста при наведении
                 className="group relative px-8 py-4 text-lg font-semibold border-2 border-pink-500 text-pink-500 dark:text-pink-400 rounded-xl 
                transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:bg-pink-500 hover:text-white overflow-hidden text-center inline-block"
               >
                 <span className="relative z-10">Get Consultation</span>
-                {/* Теперь здесь тоже БЕЛАЯ полоса, которая создает одинаковый эффект заливки */}
+
                 <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               </a>
             </div>
@@ -110,7 +102,6 @@ const Cosmetics = () => {
         </div>
       </section>
 
-      {/* О бренде секция */}
       <section
         id="about"
         className="py-16 px-4 bg-white/50 dark:bg-black/20"
@@ -132,7 +123,6 @@ const Cosmetics = () => {
             {cosmeticsData.brand.description}
           </p>
 
-          {/* Статистика */}
           <div
             className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12"
             data-aos="fade-up"
