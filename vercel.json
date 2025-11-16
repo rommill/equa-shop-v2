@@ -1,13 +1,16 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/.*",
-      "methods": ["GET", "POST"],
-      "continue": true
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/assets/:path*",
+      "destination": "/assets/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
