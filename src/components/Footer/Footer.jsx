@@ -10,16 +10,13 @@ function ViewCounter() {
 
   useEffect(() => {
     const updateViews = async () => {
-      // Для разработки - используем mock данные
       if (import.meta.env.DEV) {
-        // Генерируем случайное число для разработки
         const mockViews = Math.floor(Math.random() * 1000) + 100;
         setViews(mockViews);
         setLoading(false);
         return;
       }
 
-      // Для продакшена - реальный API вызов
       try {
         const response = await fetch("/api/counter");
         const data = await response.json();
@@ -29,7 +26,7 @@ function ViewCounter() {
         }
       } catch (error) {
         console.error("Failed to fetch views:", error);
-        // Fallback - тоже показываем mock данные при ошибке
+
         setViews(1234);
       } finally {
         setLoading(false);
@@ -225,8 +222,6 @@ const Footer = () => {
             </div>
           </div>
         </div>{" "}
-        {/* 👈 Закрываем grid */}
-        {/* Bottom Bar */}
         <div className="border-t border-gray-200 dark:border-slate-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-600 dark:text-gray-400 text-sm">
             © 2025 EQUA Shop. All rights reserved.
@@ -275,7 +270,6 @@ const Footer = () => {
           </div>
         </div>
       </div>{" "}
-      {/* 👈 Закрываем container */}
     </footer>
   );
 };
