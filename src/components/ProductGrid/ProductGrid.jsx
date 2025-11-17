@@ -22,7 +22,6 @@ const ProductGrid = ({
           data-aos-delay={index * 100}
           className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-white/10 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
         >
-          {/* Картинка продукта */}
           <div className="relative mb-4 overflow-hidden rounded-xl bg-gray-100 dark:bg-slate-700">
             <img
               src={product.image}
@@ -30,7 +29,6 @@ const ProductGrid = ({
               className="w-full h-48 object-contain transition-transform duration-500 group-hover:scale-105"
             />
 
-            {/* Бейдж поверх картинки */}
             {product.badge && (
               <div className="absolute top-3 right-3">
                 <span className="bg-pink-500 text-white px-2 py-1 rounded text-sm font-medium shadow-lg">
@@ -40,7 +38,6 @@ const ProductGrid = ({
             )}
           </div>
 
-          {/* Контент продукта */}
           <div className="flex justify-between items-start mb-2">
             <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
               {product.name}

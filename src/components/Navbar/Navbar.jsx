@@ -17,7 +17,6 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // Определяем цвета и классы в зависимости от темы
   const currentLogo = theme === "light" ? lightLogo : darkLogo;
   const navBgClass = theme === "light" ? "bg-gray-200" : "bg-slate-800";
   const navShadowClass = theme === "light" ? "shadow-md" : "shadow-lg";
@@ -40,7 +39,6 @@ export const Navbar = () => {
       data-theme={theme}
     >
       <div className="container mx-auto flex items-center justify-between py-3 px-4 md:px-8">
-        {/* Логотип */}
         <Link to="/">
           <img
             src={currentLogo}
@@ -50,7 +48,6 @@ export const Navbar = () => {
           />
         </Link>
 
-        {/* ===== Desktop Menu ===== */}
         <div className="hidden md:flex items-center gap-5 neon-hover">
           <Link to="/" className={`${linkStyles} ${navLinkColor}`}>
             Home
@@ -65,7 +62,6 @@ export const Navbar = () => {
             Products
           </Link>
 
-          {/* Ссылка на косметику с иконкой 💄 */}
           <Link
             to="/cosmetics"
             className={`${linkStyles} ${navLinkColor} flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white hover:from-pink-600 hover:to-purple-600`}
@@ -116,7 +112,6 @@ export const Navbar = () => {
             Products
           </Link>
 
-          {/* Ссылка на косметику в мобильном меню */}
           <Link
             to="/cosmetics"
             className={`${mobileLinkStyles} bg-gradient-to-r from-pink-500 to-purple-500 text-white`}

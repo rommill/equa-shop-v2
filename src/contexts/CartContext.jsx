@@ -30,8 +30,6 @@ const saveCartToStorage = (cart) => {
 };
 
 const cartReducer = (state, action) => {
-  // console.log("Cart Reducer - Action:", action); // 👈 Добавь эту строку
-  // console.log("Cart Reducer - Current State:", state); // 👈 И эту
   let newState;
 
   switch (action.type) {
@@ -113,7 +111,6 @@ export const CartProvider = ({ children }) => {
     items: [],
   });
 
-  // Загружаем корзину из localStorage при монтировании
   useEffect(() => {
     const savedCart = loadCartFromStorage();
     dispatch({ type: ACTION_TYPES.LOAD_CART, payload: savedCart });
@@ -142,14 +139,30 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     dispatch({ type: ACTION_TYPES.CLEAR_CART });
-    // Также очищаем localStorage
+
     localStorage.removeItem("equa-shop-cart");
   };
 
   const getCartTotal = () => {
     return state.items.reduce((total, item) => {
-      const price = parseFloat(item.price.replace("$", "").replace(",", ""));
-      return total + price * item.quantity;
+      const priceString = item.price.replace(/[^\d,.]/g, "").replace(",", ".");
+
+      const price = parseFloat(priceString);
+
+      if (isNaN(price)) {
+        console.error(
+          "❌ Invalid price format:",
+          item.price,
+          "for item:",
+          item.name
+        );
+        return total;
+      }
+
+      const itemTotal = price * item.quantity;
+      console.log("📊 Item total:", itemTotal, "Quantity:", item.quantity);
+
+      return total + itemTotal;
     }, 0);
   };
 

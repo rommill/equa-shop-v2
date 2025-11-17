@@ -1,7 +1,6 @@
 // src/contexts/CosmeticsCartContext.jsx
 import React, { createContext, useContext, useReducer, useEffect } from "react";
 
-// Типы действий
 const ACTION_TYPES = {
   ADD_TO_CART: "ADD_TO_CART",
   REMOVE_FROM_CART: "REMOVE_FROM_CART",
@@ -10,7 +9,6 @@ const ACTION_TYPES = {
   LOAD_CART: "LOAD_CART",
 };
 
-// localStorage функции
 const loadCosmeticsCartFromStorage = () => {
   try {
     const savedCart = localStorage.getItem("equa-cosmetics-cart");
@@ -129,8 +127,41 @@ export const CosmeticsCartProvider = ({ children }) => {
 
   const getCartTotal = () => {
     return state.items.reduce((total, item) => {
-      const price = parseFloat(item.price.replace("$", "").replace(",", ""));
-      return total + price * item.quantity;
+      console.log(
+        "💄 Processing cosmetics item:",
+        item.name,
+        "Price:",
+        item.price
+      );
+
+      // Убираем все нечисловые символы кроме точек, запятых и цифр
+      const priceString = item.price
+        .replace(/[^\d,.]/g, "") // Убираем ВСЕ символы кроме цифр, запятых и точек
+        .replace(",", "."); // Заменяем запятую на точку
+
+      const price = parseFloat(priceString);
+
+      console.log("💰 Parsed cosmetics price:", price, "from:", item.price);
+
+      if (isNaN(price)) {
+        console.error(
+          "❌ Invalid cosmetics price format:",
+          item.price,
+          "for item:",
+          item.name
+        );
+        return total;
+      }
+
+      const itemTotal = price * item.quantity;
+      console.log(
+        "📊 Cosmetics item total:",
+        itemTotal,
+        "Quantity:",
+        item.quantity
+      );
+
+      return total + itemTotal;
     }, 0);
   };
 
@@ -155,7 +186,6 @@ export const CosmeticsCartProvider = ({ children }) => {
   );
 };
 
-// Хук для использования контекста
 export const useCosmeticsCart = () => {
   const context = useContext(CosmeticsCartContext);
   if (!context) {

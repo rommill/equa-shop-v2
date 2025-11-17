@@ -180,25 +180,23 @@ const Cart = () => {
 
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between text-gray-600 dark:text-gray-300">
-                  <span>Subtotal</span>
-                  <span>${totalPrice?.toFixed(2) || "0.00"}</span>
+                  <span>
+                    Subtotal ({totalItems} {totalItems === 1 ? "item" : "items"}
+                    )
+                  </span>
+                  <span>{totalPrice?.toFixed(2) || "0.00"} €</span>
                 </div>
                 <div className="flex justify-between text-gray-600 dark:text-gray-300">
                   <span>Shipping</span>
                   <span className="text-green-500">FREE</span>
                 </div>
-                <div className="flex justify-between text-gray-600 dark:text-gray-300">
-                  <span>Tax</span>
-                  <span>${((totalPrice || 0) * 0.1).toFixed(2)}</span>
-                </div>
                 <div className="border-t border-gray-200 dark:border-slate-600 pt-3">
                   <div className="flex justify-between text-lg font-bold text-gray-800 dark:text-white">
                     <span>Total</span>
-                    <span>${((totalPrice || 0) * 1.1).toFixed(2)}</span>
+                    <span>{totalPrice?.toFixed(2) || "0.00"} €</span>
                   </div>
                 </div>
               </div>
-
               <button className="w-full bg-blue-500 text-white py-4 rounded-xl font-semibold hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 mb-4">
                 Proceed to Checkout
               </button>
