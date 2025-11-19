@@ -6,10 +6,10 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
 const CartIcon = () => {
-  const { getCartItemsCount } = useCart(); // 👈 Используем эту функцию
+  const { getCartItemsCount } = useCart();
   const { theme } = useTheme();
 
-  const totalItems = getCartItemsCount(); // 👈 Получаем количество товаров
+  const totalItems = getCartItemsCount();
 
   const iconColor = theme === "light" ? "text-gray-800" : "text-white";
   const counterBg = theme === "light" ? "bg-sky-500" : "bg-pink-500";
@@ -21,7 +21,6 @@ const CartIcon = () => {
     >
       <HiOutlineShoppingBag className="w-7 h-7" />
 
-      {/* Счетчик товаров */}
       {totalItems > 0 && (
         <span
           className={`absolute -top-1 -right-1 flex items-center justify-center 
@@ -35,4 +34,4 @@ const CartIcon = () => {
   );
 };
 
-export default CartIcon; // 👈 Экспортируем как default
+export default CartIcon;

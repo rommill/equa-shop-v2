@@ -1,5 +1,5 @@
 // src/routes/CosmeticsCart.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useCosmeticsCart } from "../contexts/CosmeticsCartContext";
 import Footer from "../components/Footer/Footer";
@@ -13,6 +13,12 @@ const CosmeticsCart = () => {
     getCartTotal,
     getCartItemsCount,
   } = useCosmeticsCart();
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const totalItems = getCartItemsCount();
   const totalPrice = getCartTotal();
@@ -50,7 +56,6 @@ const CosmeticsCart = () => {
     <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-100 dark:from-purple-900 dark:to-pink-900 pt-20">
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Левая часть - товары */}
           <div className="lg:w-2/3">
             <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-3xl p-4 md:p-6 shadow-2xl border border-white/20">
               <div className="flex justify-between items-center mb-6">
@@ -65,7 +70,7 @@ const CosmeticsCart = () => {
                   Clear All
                 </button>
                 <Link
-                  to="/cosmetics" // или window.history.back()
+                  to="/cosmetics"
                   className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 font-medium transition-colors px-3 py-1 rounded-lg bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors"
                 >
                   x Close
@@ -78,7 +83,6 @@ const CosmeticsCart = () => {
                     key={item.id}
                     className="flex items-center gap-2 md:gap-3 p-3 md:p-4 bg-white dark:bg-slate-700 rounded-2xl border border-gray-100 dark:border-slate-600"
                   >
-                    {/* Изображение товара */}
                     <div className="w-12 h-12 md:w-16 md:h-16 flex-shrink-0">
                       <img
                         src={item.image}
@@ -87,7 +91,6 @@ const CosmeticsCart = () => {
                       />
                     </div>
 
-                    {/* Информация о товаре */}
                     <div className="flex-grow min-w-0">
                       <div className="flex items-start justify-between">
                         <div className="min-w-0 flex-1">
@@ -104,7 +107,6 @@ const CosmeticsCart = () => {
                       </div>
                     </div>
 
-                    {/* Управление количеством и удаление */}
                     <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
                       <div className="flex items-center gap-1">
                         <button
@@ -133,7 +135,6 @@ const CosmeticsCart = () => {
                         </button>
                       </div>
 
-                      {/* Удалить товар */}
                       <button
                         onClick={() => removeFromCart(item.id)}
                         className="p-1 text-gray-400 hover:text-red-500 transition-colors flex-shrink-0"
@@ -160,7 +161,6 @@ const CosmeticsCart = () => {
             </div>
           </div>
 
-          {/* Правая часть - итоги */}
           <div className="lg:w-1/3">
             <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-3xl p-4 md:p-6 shadow-2xl border border-white/20">
               <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">

@@ -1,5 +1,5 @@
 // src/routes/Cart.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
 import { useTheme } from "../contexts/ThemeContext";
@@ -17,7 +17,12 @@ const Cart = () => {
   } = useCart();
   const { theme } = useTheme();
 
-  console.log("🛒 All cart items:", cartItems);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const totalItems = getCartItemsCount();
   const totalPrice = getCartTotal();

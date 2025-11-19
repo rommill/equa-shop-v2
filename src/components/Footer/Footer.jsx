@@ -205,7 +205,7 @@ const Footer = () => {
             </h3>
             <div className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-slate-700">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2083.1234567890123!2d26.7145!3d58.3800!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eb36fa1cfc43b1%3A0x8e47d0f7c8c8c8c8!2sLembitu%208%2C%2050430%20Tartu%2C%20Estonia!5e0!3m2!1sen!2see!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2083.381640625!2d26.722715!3d58.380051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eb36fa1cfc43b1%3A0x8e47d0f7c8c8c8c8!2sLembitu%208%2C%2050430%20Tartu%2C%20Estonia!5e0!3m2!1sen!2see!4v1234567890"
                 width="100%"
                 height="200"
                 style={{ border: 0 }}

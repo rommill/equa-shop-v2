@@ -9,24 +9,19 @@ const ACTION_TYPES = {
   LOAD_CART: "LOAD_CART",
 };
 
-// Функция для загрузки корзины из localStorage
 const loadCartFromStorage = () => {
   try {
     const savedCart = localStorage.getItem("equa-shop-cart");
     return savedCart ? JSON.parse(savedCart) : { items: [] };
   } catch (error) {
-    console.error("Error loading cart from localStorage:", error);
     return { items: [] };
   }
 };
 
-// Функция для сохранения корзины в localStorage
 const saveCartToStorage = (cart) => {
   try {
     localStorage.setItem("equa-shop-cart", JSON.stringify(cart));
-  } catch (error) {
-    console.error("Error saving cart to localStorage:", error);
-  }
+  } catch (error) {}
 };
 
 const cartReducer = (state, action) => {
@@ -96,7 +91,6 @@ const cartReducer = (state, action) => {
       return state;
   }
 
-  // Сохраняем в localStorage после каждого изменения
   if (newState) {
     saveCartToStorage(newState);
   }
@@ -150,17 +144,10 @@ export const CartProvider = ({ children }) => {
       const price = parseFloat(priceString);
 
       if (isNaN(price)) {
-        console.error(
-          "❌ Invalid price format:",
-          item.price,
-          "for item:",
-          item.name
-        );
         return total;
       }
 
       const itemTotal = price * item.quantity;
-      console.log("📊 Item total:", itemTotal, "Quantity:", item.quantity);
 
       return total + itemTotal;
     }, 0);

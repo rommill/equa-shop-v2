@@ -127,39 +127,15 @@ export const CosmeticsCartProvider = ({ children }) => {
 
   const getCartTotal = () => {
     return state.items.reduce((total, item) => {
-      console.log(
-        "💄 Processing cosmetics item:",
-        item.name,
-        "Price:",
-        item.price
-      );
-
-      // Убираем все нечисловые символы кроме точек, запятых и цифр
-      const priceString = item.price
-        .replace(/[^\d,.]/g, "") // Убираем ВСЕ символы кроме цифр, запятых и точек
-        .replace(",", "."); // Заменяем запятую на точку
+      const priceString = item.price.replace(/[^\d,.]/g, "").replace(",", ".");
 
       const price = parseFloat(priceString);
 
-      console.log("💰 Parsed cosmetics price:", price, "from:", item.price);
-
       if (isNaN(price)) {
-        console.error(
-          "❌ Invalid cosmetics price format:",
-          item.price,
-          "for item:",
-          item.name
-        );
         return total;
       }
 
       const itemTotal = price * item.quantity;
-      console.log(
-        "📊 Cosmetics item total:",
-        itemTotal,
-        "Quantity:",
-        item.quantity
-      );
 
       return total + itemTotal;
     }, 0);
